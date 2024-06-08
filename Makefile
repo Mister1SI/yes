@@ -12,7 +12,7 @@ qemu: cleanout iso
 	qemu-system-i386 out/iso/os.iso
 
 out/obj/%.o: kernel/%.c
-	i686-elf-gcc -c $^ -o $@ -std=gnu99 -ffreestanding -O2 -Wall -Wextra
+	i686-elf-gcc -c $^ -o $@ -Iinc -std=gnu99 -ffreestanding -O2 -Wall -Wextra
 
 out/obj/boot.o: boot.s
 	nasm -felf32 -o out/obj/boot.o boot.s
