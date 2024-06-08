@@ -20,13 +20,13 @@ out/obj/boot.o: boot.s
 iso: cleaniso $(KERNELOBJ) $(ALLOBJ) out/obj/boot.o
 	@echo "KSRC: $(KERNELSRC) ||| KOBJ: $(KERNELOBJ) ||| ALLOBJ: $(ALLOBJ)"
 	i686-elf-gcc -T linker.ld -o out/bin/os.bin -ffreestanding -O2 -nostdlib $(ALLOBJ)
-	mkdir -p iso/boot/grub
 	cp grub.cfg iso/boot/grub/
 	cp out/bin/os.bin iso/boot/
 	grub-mkrescue -o out/iso/os.iso iso
 
 cleaniso:
 	rm -rf iso
+	mkdir -p iso/boot/grub
 
 cleanout:
 	rm -rf out
